@@ -30,8 +30,8 @@ If you complete the above with time to spare, fill any gaps in your understandin
 
 Complete exercises 1-13 in the [promise-it-wont-hurt-solutions][promise-it-wont-hurt-solutions].
 
-- [ ] `src/01-warmup.js` is complete and written to the appropriate file.
-- [ ] `src/02-fullfill-a-promise.js` is complete and written to the appropriate file.
+- [X] `src/01-warmup.js` is complete and written to the appropriate file.
+- [X] `src/02-fullfill-a-promise.js` is complete and written to the appropriate file.
 - [ ] `src/03-reject-a-promise.js` is complete and written to the appropriate file.
 - [ ] `src/04-to-reject-or-not-to-reject.js` is complete and written to the appropriate file.
 - [ ] `src/05-always-asynchronous.js` is complete and written to the appropriate file.
