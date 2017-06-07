@@ -70,14 +70,14 @@ firstTenBooks.then(books => {
 
 */
 
-// let findAuthorsOrderedByLastName; // = .... IMPLEMENT THIS FUNCTION
-// findAuthorsOrderedByLastName.then(authors => {
-//   assert.deepEqual(authors.length, 19)
-//   assert.deepEqual(authors[0].last_name, 'Alcott')
-//   assert.deepEqual(authors[18].last_name, 'Worsley')
-// }).catch(error => {
-//   console.log('Whoops, my function doesnt behave as expected.', error);
-// });
+let findAuthorsOrderedByLastName = db.any('SELECT * FROM authors ORDER BY last_name')
+findAuthorsOrderedByLastName.then(authors => {
+  assert.deepEqual(authors.length, 19)
+  assert.deepEqual(authors[0].last_name, 'Alcott')
+  assert.deepEqual(authors[18].last_name, 'Worsley')
+}).catch(error => {
+  console.log('Whoops, my function doesnt behave as expected.', error)
+})
 
 /* --------End of Exercise 3---------------- */
 
