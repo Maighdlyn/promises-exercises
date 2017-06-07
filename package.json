@@ -1,0 +1,27 @@
+{
+  "name": "promises-exercises",
+  "version": "1.0.0",
+  "description": "Base repository for the [promises-applied](https://github.com/GuildCrafts/web-development-js/issues/186) goal.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maighdlyn/promises-exercises.git"
+  },
+  "author": "Emma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maighdlyn/promises-exercises/issues"
+  },
+  "homepage": "https://github.com/Maighdlyn/promises-exercises#readme",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}
