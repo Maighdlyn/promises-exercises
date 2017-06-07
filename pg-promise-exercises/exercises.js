@@ -5,12 +5,11 @@ const postgresConfig = {
   host: 'localhost',
   port: 5432,
   database: 'pg-promise-exercises',
-  user: '<change-this-to-your-username>', // replace this with your username
+  user: 'emmabrown', // replace this with your username
   password: '' //  replace this if you have set a password for your username (this is unlikely)
-};
+}
 
-
-const db = pg(postgresConfig);
+const db = pg(postgresConfig)
 
 /* -----------------------------------------
    Exercise 1
@@ -25,22 +24,16 @@ const db = pg(postgresConfig);
 
 */
 
-
-
 const allBooks = db.any('select * from books')
 /* This is calling the `then` function on the `allBooks` promise, and checks if
-   we get back 15 rows. This assertion will fail. Make it PASS!*/
+   we get back 15 rows. This assertion will fail. Make it PASS! */
 allBooks.then(books => {
-  assert.deepEqual(books.length, 20)
+  assert.deepEqual(books.length, 15)
 }).catch(error => {
-  console.log('Dang, my assertion failed.', error);
-});
+  console.log('Dang, my assertion failed.', error)
+})
 
 /* --------End of Exercise 1---------------- */
-
-
-
-
 
 /* -----------------------------------------
            Exercise 2
@@ -52,20 +45,16 @@ allBooks.then(books => {
    @input params: None
    @output: [{id, title, author_id, subject_id}]
 
-
 */
 
-let firstTenBooks; // = .... IMPLEMENT THIS FUNCTION
-firstTenBooks.then(books => {
-  assert(books.length, 10)
-}).catch(error => {
-  console.log('Whoops, my function doesnt behave as expected.', error);
-});
+// let firstTenBooks; // = .... IMPLEMENT THIS FUNCTION
+// firstTenBooks.then(books => {
+//   assert(books.length, 10)
+// }).catch(error => {
+//   console.log('Whoops, my function doesnt behave as expected.', error);
+// });
 
 /* --------End of Exercise 2---------------- */
-
-
-
 
 /* -----------------------------------------
             Exercise 3
@@ -75,26 +64,22 @@ firstTenBooks.then(books => {
    authors from the the `authors` table, and the rows are ordered by the
    `last_name`.
 
-
    @function: `findAuthorsOrderedByLastName`
    @input params: None
    @output: [{id, first_name, last_name}]
 
-
 */
 
-let findAuthorsOrderedByLastName; // = .... IMPLEMENT THIS FUNCTION
-findAuthorsOrderedByLastName.then(authors => {
-  assert.deepEqual(authors.length, 19)
-  assert.deepEqual(authors[0].last_name, 'Alcott')
-  assert.deepEqual(authors[18].last_name, 'Worsley')
-}).catch(error => {
-  console.log('Whoops, my function doesnt behave as expected.', error);
-});
+// let findAuthorsOrderedByLastName; // = .... IMPLEMENT THIS FUNCTION
+// findAuthorsOrderedByLastName.then(authors => {
+//   assert.deepEqual(authors.length, 19)
+//   assert.deepEqual(authors[0].last_name, 'Alcott')
+//   assert.deepEqual(authors[18].last_name, 'Worsley')
+// }).catch(error => {
+//   console.log('Whoops, my function doesnt behave as expected.', error);
+// });
 
 /* --------End of Exercise 3---------------- */
-
-
 
 /* -----------------------------------------
    Exercise 4
@@ -128,13 +113,9 @@ findAuthorsOrderedByLastName.then(authors => {
    {first_name: 'Theodor Seuss', last_name: 'Geisel', title: 'Bartholomew and the Oobleck'}
    {first_name: 'Theodor Seuss', last_name: 'Geisel', title: 'The Cat in the Hat'}]
 */
-let findBookAuthors; // IMPLEMENT THIS FUNCTION
+let findBookAuthors // IMPLEMENT THIS FUNCTION
 
 /* --------End of Exercise 4---------------- */
-
-
-
-
 
 /* -----------------------------------------
    Exercise 5
@@ -154,15 +135,10 @@ let findBookAuthors; // IMPLEMENT THIS FUNCTION
      [{author_id: 1809},
       {author_id: 7805}]
 
-
 */
 let authorIdWithTwoBooks; // IMPLEMENT THIS FUNCTION
 
 /* --------End of Exercise 5---------------- */
-
-
-
-
 
 /* -----------------------------------------
    Exercise 6
@@ -190,9 +166,6 @@ let bookTitlesWithMultipleEditions; // IMPLEMENT THIS FUNCTION
 
 /* --------End of Exercise 6---------------- */
 
-
-
-
 /* -----------------------------------------
    Exercise 7
    -----------------------------------------
@@ -217,8 +190,5 @@ let findStockedBooks; // IMPLEMENT THIS FUNCTION
 
 /* --------End of Exercise 7---------------- */
 
-
-
-
-console.log('Reached the end!');
-pg.end();
+console.log('Reached the end!')
+pg.end()

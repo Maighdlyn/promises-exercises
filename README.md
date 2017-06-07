@@ -52,7 +52,7 @@ Look at the [documentation](https://github.com/vitaly-t/pg-promise/wiki/Learn-by
 
 Complete exercises 1-7 in the [pg promise exercises][pg-promise-exercises].
 
-- [ ] Exercise 1 is complete.
+- [X] Exercise 1 is complete.
 - [ ] Exercise 2 is complete.
 - [ ] Exercise 3 is complete.
 - [ ] Exercise 4 is complete.
@@ -61,9 +61,9 @@ Complete exercises 1-7 in the [pg promise exercises][pg-promise-exercises].
 - [ ] Exercise 7 is complete.
 
 ### General
-- [ ] All package dependencies are properly declared in `package.json`.
-- [ ] All major features are added via pull requests with a clear description and concise commit messages.
-- [ ] Code uses a linter and there are no linting errors.
+- [] All package dependencies are properly declared in `package.json`.
+- [] All major features are added via pull requests with a clear description and concise commit messages.
+- [] Code uses a linter and there are no linting errors.
 - [ ] Variables, functions, files, etc. have appropriate and meaningful names.
 - [ ] Functions are small and serve a single purpose.
 
