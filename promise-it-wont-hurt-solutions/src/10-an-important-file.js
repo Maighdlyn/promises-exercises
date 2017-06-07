@@ -1,12 +1,13 @@
-'use strict';
+'use strict'
 
-function alwaysThrows(){
-  throw new Error("OH NOES")
+function alwaysThrows () {
+  throw new Error('OH NOES')
 }
 
-function iterate(integer){
+function iterate (integer) {
   console.log(integer)
-  return integer += 1
+  integer += 1
+  return integer
 }
 
 Promise.resolve(iterate(1))
@@ -20,4 +21,4 @@ Promise.resolve(iterate(1))
   .then(iterate)
   .then(iterate)
   .then(iterate)
-  .then(null, console.log);
+  .then(null, console.log)

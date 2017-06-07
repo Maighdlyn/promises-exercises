@@ -1,14 +1,14 @@
-'use strict';
+'use strict'
 
-function parsePromised(json){
-  return new Promise(function(fulfill, reject){
-    try{
-      fulfill(JSON.parse(json))
-    } catch (e) {
-      reject (e)
+function parsePromised (json) {
+  return new Promise(function (resolve, reject) {
+    try {
+      resolve(JSON.parse(json))
+    } catch (error) {
+      reject(error)
     }
   })
 }
 
 parsePromised(process.argv[2])
-.then(null, console.log)
+  .then(null, console.log)

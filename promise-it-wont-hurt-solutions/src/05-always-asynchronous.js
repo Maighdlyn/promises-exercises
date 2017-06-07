@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-var promise = new Promise(function (fulfill, reject){
-    fulfill('PROMISE VALUE')
-});
+var promise = new Promise(function (resolve, reject) {
+  resolve('PROMISE VALUE')
+})
 
-promise.then(console.log);
-console.log('MAIN PROGRAM');
+promise.then(console.log)
+console.log('MAIN PROGRAM')

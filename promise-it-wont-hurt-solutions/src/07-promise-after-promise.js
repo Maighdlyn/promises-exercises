@@ -1,3 +1,5 @@
-'use strict';
+'use strict'
 
-first().then(second).then(console.log);
+first()
+  .then(second)
+  .then(console.log)

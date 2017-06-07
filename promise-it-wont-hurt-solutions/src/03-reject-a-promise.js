@@ -1,13 +1,13 @@
-'use strict';
+'use strict'
 
-var promise = new Promise(function (fulfill, reject){
-  setTimeout(function(){
+var promise = new Promise(function (resolve, reject) {
+  setTimeout(function () {
     reject(new Error('REJECTED!'))
   }, 300)
-});
+})
 
-function onReject(error){
+function onReject (error) {
   console.log(error.message)
-};
+}
 
-promise.then(null, onReject);
+promise.then(null, onReject)

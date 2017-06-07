@@ -1,11 +1,11 @@
-'use strict';
+'use strict'
 
-var resolved = Promise.resolve("Promise fulfilled.");
-var rejected = Promise.reject(new Error("Rejection."));
+var resolved = Promise.resolve('Promise fulfilled.')
+var rejected = Promise.reject(new Error('Rejection.'))
 
-function onReject(error){
+function onReject (error) {
   console.log(error.message)
-};
+}
 
-resolved.then(console.log);
-rejected.catch(onReject);
+resolved.then(console.log)
+rejected.catch(onReject)
