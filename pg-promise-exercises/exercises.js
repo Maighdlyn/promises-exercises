@@ -24,7 +24,7 @@ const db = pg(postgresConfig)
 
 */
 
-const allBooks = db.any('select * from books')
+const allBooks = db.any('SELECT * FROM books')
 /* This is calling the `then` function on the `allBooks` promise, and checks if
    we get back 15 rows. This assertion will fail. Make it PASS! */
 allBooks.then(books => {
@@ -47,12 +47,12 @@ allBooks.then(books => {
 
 */
 
-// let firstTenBooks; // = .... IMPLEMENT THIS FUNCTION
-// firstTenBooks.then(books => {
-//   assert(books.length, 10)
-// }).catch(error => {
-//   console.log('Whoops, my function doesnt behave as expected.', error);
-// });
+let firstTenBooks = db.any('SELECT * FROM books LIMIT 10')
+firstTenBooks.then(books => {
+  assert(books.length, 10)
+}).catch(error => {
+  console.log('Whoops, my function doesnt behave as expected.', error)
+})
 
 /* --------End of Exercise 2---------------- */
 

@@ -53,7 +53,7 @@ Look at the [documentation](https://github.com/vitaly-t/pg-promise/wiki/Learn-by
 Complete exercises 1-7 in the [pg promise exercises][pg-promise-exercises].
 
 - [X] Exercise 1 is complete.
-- [ ] Exercise 2 is complete.
+- [X] Exercise 2 is complete.
 - [ ] Exercise 3 is complete.
 - [ ] Exercise 4 is complete.
 - [ ] Exercise 5 is complete.
