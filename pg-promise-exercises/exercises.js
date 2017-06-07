@@ -113,7 +113,16 @@ findAuthorsOrderedByLastName.then(authors => {
    {first_name: 'Theodor Seuss', last_name: 'Geisel', title: 'Bartholomew and the Oobleck'}
    {first_name: 'Theodor Seuss', last_name: 'Geisel', title: 'The Cat in the Hat'}]
 */
-let findBookAuthors // IMPLEMENT THIS FUNCTION
+let findBookAuthors = db.any('SELECT first_name, last_name, title FROM authors JOIN books ON authors.id = books.author_id')
+
+findBookAuthors.then(books => {
+  assert.deepEqual(books[0].first_name, 'John')
+  assert.deepEqual(books[0].last_name, 'Worsley')
+  assert.deepEqual(books[0].title, 'Practical PostgreSQL')
+  assert.deepEqual(books[books.length - 1].title, 'The Cat in the Hat')
+}).catch(error => {
+  console.log('ERROR!!!', error)
+})
 
 /* --------End of Exercise 4---------------- */
 
