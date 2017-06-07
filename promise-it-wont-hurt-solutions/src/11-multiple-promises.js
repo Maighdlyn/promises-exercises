@@ -25,5 +25,6 @@ function all (promise1, promise2) {
   })
 }
 
+// getPromise1() and getPromise2() are definted within the nodeschool tutorial environment
 all(getPromise1(), getPromise2())
   .then(console.log)
