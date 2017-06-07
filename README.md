@@ -38,7 +38,7 @@ Complete exercises 1-13 in the [promise-it-wont-hurt-solutions][promise-it-wont-
 - [X] `src/06-shortcuts.js` is complete and written to the appropriate file.
 - [X] `src/07-promise-after-promise.js` is complete and written to the appropriate file.
 - [X] `src/08-values-and-promises.js` is complete and written to the appropriate file.
-- [ ] `src/09-throw-an-error.js` is complete and written to the appropriate file. _\*see note below_
+- [X] `src/09-throw-an-error.js` is complete and written to the appropriate file. _\*see note below_
 - [ ] `src/10-an-important-file.js` is complete and written to the appropriate file. _\*see note below_
 - [ ] `src/11-multiple-promises.js` is complete and written to the appropriate file.
 - [ ] `src/12-fetch-json.js` is complete and written to the appropriate file.
