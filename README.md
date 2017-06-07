@@ -41,7 +41,7 @@ Complete exercises 1-13 in the [promise-it-wont-hurt-solutions][promise-it-wont-
 - [X] `src/09-throw-an-error.js` is complete and written to the appropriate file. _\*see note below_
 - [X] `src/10-an-important-file.js` is complete and written to the appropriate file. _\*see note below_
 - [X] `src/11-multiple-promises.js` is complete and written to the appropriate file.
-- [ ] `src/12-fetch-json.js` is complete and written to the appropriate file.
+- [X] `src/12-fetch-json.js` is complete and written to the appropriate file.
 - [ ] `src/13-do-some-work.js` is complete and written to the appropriate file.
 
 \*Note: `promise-it-wont-hurt` has a bug which checks the full path of the files, instead of the relative paths. This causes exercise 9 & 10's verify command to fail even though the solution is correct. If the file path is the only error that you are seeing, it means that your code is correct.
