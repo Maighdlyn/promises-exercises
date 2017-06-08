@@ -56,7 +56,7 @@ Complete exercises 1-7 in the [pg promise exercises][pg-promise-exercises].
 - [X] Exercise 2 is complete.
 - [X] Exercise 3 is complete.
 - [X] Exercise 4 is complete.
-- [ ] Exercise 5 is complete.
+- [X] Exercise 5 is complete.
 - [ ] Exercise 6 is complete.
 - [ ] Exercise 7 is complete.
 
