@@ -121,7 +121,7 @@ findBookAuthors.then(books => {
   assert.deepEqual(books[0].title, 'Practical PostgreSQL')
   assert.deepEqual(books[books.length - 1].title, 'The Cat in the Hat')
 }).catch(error => {
-  console.log('THERE IS AN ERROR!!!', error)
+  console.log('There is an error in findBookAuthors!!!', error)
 })
 
 /* --------End of Exercise 4---------------- */
@@ -145,13 +145,15 @@ findBookAuthors.then(books => {
       {author_id: 7805}]
 
 */
+
 let authorIdWithTwoBooks = db.any('SELECT author_id FROM books GROUP BY author_id HAVING COUNT(*) = 2')
 authorIdWithTwoBooks.then(id => {
   assert.deepEqual(id[0].author_id, '1809')
   assert.deepEqual(id[1].author_id, '7805')
+  assert.deepEqual(id.length, 2)
   // console.log(authorIdWithTwoBooks)
 }).catch(error => {
-  console.log('THERE IS AN ERROR!!!', error)
+  console.log('There is an error in authorIdWithTwoBooks!!!', error)
 })
 // Why does this return "[ anonymous { author_id: 1809 }, anonymous { author_id: 7805 } ] }"? What is the 'anonymous'? (uncomment line 152 to see it in the console.log)
 
@@ -179,7 +181,15 @@ authorIdWithTwoBooks.then(id => {
       {title: 'The Tell-Tale Heart'}]
 
 */
-let bookTitlesWithMultipleEditions; // IMPLEMENT THIS FUNCTION
+let bookTitlesWithMultipleEditions = db.any('SELECT title, COUNT(*) FROM books JOIN editions ON editions.book_id = books.id GROUP BY books.id HAVING COUNT(*) >= 2')
+
+bookTitlesWithMultipleEditions.then(multipleEditions => {
+  assert.deepEqual(multipleEditions.length, 5)
+  assert.deepEqual(multipleEditions[0].title, 'The Shining')
+  // console.log(bookTitlesWithMultipleEditions)
+}).catch(error => {
+  console.log('There is an error in bookTitlesWithMultipleEditions!!!', error)
+})
 
 /* --------End of Exercise 6---------------- */
 
@@ -203,7 +213,17 @@ let bookTitlesWithMultipleEditions; // IMPLEMENT THIS FUNCTION
      {title: 'The Cat in the Hat', first_name: 'Theodor Seuss', last_name: 'Geisel'}]
 
 */
-let findStockedBooks; // IMPLEMENT THIS FUNCTION
+
+let findStockedBooks = db.any('SELECT DISTINCT title, authors.first_name, authors.last_name FROM books JOIN authors ON books.author_id = authors.id JOIN editions ON editions.book_id = books.id JOIN daily_inventory ON daily_inventory.isbn = editions.isbn WHERE is_stocked = TRUE')
+// What's the best way to format findStockedBooks?
+
+findStockedBooks.then(stockedBooks => {
+  assert.deepEqual(stockedBooks.length, 2)
+  assert.deepEqual(stockedBooks[0].first_name, 'Frank')
+  assert.deepEqual(stockedBooks[0].last_name, 'Herbert')
+}).catch(error => {
+  console.log('There is an error in findStockedBooks!!!', error)
+})
 
 /* --------End of Exercise 7---------------- */
 
