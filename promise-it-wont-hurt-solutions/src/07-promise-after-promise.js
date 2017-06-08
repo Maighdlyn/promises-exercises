@@ -1,6 +1,6 @@
 'use strict'
 
-// first and second are defined within the nodeschool testing environment
+// turned off 'no-undef' linting because first and second are defined within the nodeschool workshopper process
 first()
   .then(second)
   .then(console.log)

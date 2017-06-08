@@ -3,5 +3,9 @@
     "plugins": [
         "standard",
         "promise"
-    ]
+    ],
+    "rules": {
+        "no-multi-str": "off",
+        "no-undef": "off"
+      }
 }

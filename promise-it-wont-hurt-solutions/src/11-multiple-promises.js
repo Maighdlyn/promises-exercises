@@ -25,6 +25,6 @@ function all (promise1, promise2) {
   })
 }
 
-// getPromise1() and getPromise2() are definted within the nodeschool tutorial environment
+// turned off 'no-undef' linting because getPromise1() and getPromise2() are definted within the nodeschool workshopper process
 all(getPromise1(), getPromise2())
   .then(console.log)

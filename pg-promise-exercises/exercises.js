@@ -5,12 +5,11 @@ const postgresConfig = {
   host: 'localhost',
   port: 5432,
   database: 'pg-promise-exercises',
-  user: '<change-this-to-your-username>', // replace this with your username
+  user: 'emmabrown', // replace this with your username
   password: '' //  replace this if you have set a password for your username (this is unlikely)
-};
+}
 
-
-const db = pg(postgresConfig);
+const db = pg(postgresConfig)
 
 /* -----------------------------------------
    Exercise 1
@@ -25,22 +24,19 @@ const db = pg(postgresConfig);
 
 */
 
-
-
-const allBooks = db.any('select * from books')
+const allBooks = db.any('SELECT * FROM books')
 /* This is calling the `then` function on the `allBooks` promise, and checks if
-   we get back 15 rows. This assertion will fail. Make it PASS!*/
-allBooks.then(books => {
-  assert.deepEqual(books.length, 20)
-}).catch(error => {
-  console.log('Dang, my assertion failed.', error);
-});
+   we get back 15 rows. This assertion will fail. Make it PASS! */
+
+allBooks
+  .then(books => {
+    assert.equal(books.length, 15)
+  })
+  .catch(error => {
+    console.log('Dang, my assertion failed.', error)
+  })
 
 /* --------End of Exercise 1---------------- */
-
-
-
-
 
 /* -----------------------------------------
            Exercise 2
@@ -52,20 +48,19 @@ allBooks.then(books => {
    @input params: None
    @output: [{id, title, author_id, subject_id}]
 
-
 */
 
-let firstTenBooks; // = .... IMPLEMENT THIS FUNCTION
-firstTenBooks.then(books => {
-  assert(books.length, 10)
-}).catch(error => {
-  console.log('Whoops, my function doesnt behave as expected.', error);
-});
+let firstTenBooks = db.any('SELECT * FROM books LIMIT 10')
+
+firstTenBooks
+  .then(books => {
+    assert(books.length, 10)
+  })
+  .catch(error => {
+    console.log('Whoops, my function doesnt behave as expected.', error)
+  })
 
 /* --------End of Exercise 2---------------- */
-
-
-
 
 /* -----------------------------------------
             Exercise 3
@@ -75,26 +70,25 @@ firstTenBooks.then(books => {
    authors from the the `authors` table, and the rows are ordered by the
    `last_name`.
 
-
    @function: `findAuthorsOrderedByLastName`
    @input params: None
    @output: [{id, first_name, last_name}]
 
-
 */
 
-let findAuthorsOrderedByLastName; // = .... IMPLEMENT THIS FUNCTION
-findAuthorsOrderedByLastName.then(authors => {
-  assert.deepEqual(authors.length, 19)
-  assert.deepEqual(authors[0].last_name, 'Alcott')
-  assert.deepEqual(authors[18].last_name, 'Worsley')
-}).catch(error => {
-  console.log('Whoops, my function doesnt behave as expected.', error);
-});
+let findAuthorsOrderedByLastName = db.any('SELECT * FROM authors ORDER BY last_name')
+
+findAuthorsOrderedByLastName
+  .then(authors => {
+    assert.equal(authors.length, 19)
+    assert.equal(authors[0].last_name, 'Alcott')
+    assert.equal(authors[18].last_name, 'Worsley')
+  })
+  .catch(error => {
+    console.log('Whoops, my function doesnt behave as expected.', error)
+  })
 
 /* --------End of Exercise 3---------------- */
-
-
 
 /* -----------------------------------------
    Exercise 4
@@ -128,13 +122,21 @@ findAuthorsOrderedByLastName.then(authors => {
    {first_name: 'Theodor Seuss', last_name: 'Geisel', title: 'Bartholomew and the Oobleck'}
    {first_name: 'Theodor Seuss', last_name: 'Geisel', title: 'The Cat in the Hat'}]
 */
-let findBookAuthors; // IMPLEMENT THIS FUNCTION
+
+let findBookAuthors = db.any('SELECT first_name, last_name, title FROM authors JOIN books ON authors.id = books.author_id')
+
+findBookAuthors
+  .then(books => {
+    assert.equal(books[0].first_name, 'John')
+    assert.equal(books[0].last_name, 'Worsley')
+    assert.equal(books[0].title, 'Practical PostgreSQL')
+    assert.equal(books[books.length - 1].title, 'The Cat in the Hat')
+  })
+  .catch(error => {
+    console.log('There is an error in findBookAuthors!!!', error)
+  })
 
 /* --------End of Exercise 4---------------- */
-
-
-
-
 
 /* -----------------------------------------
    Exercise 5
@@ -154,15 +156,21 @@ let findBookAuthors; // IMPLEMENT THIS FUNCTION
      [{author_id: 1809},
       {author_id: 7805}]
 
-
 */
-let authorIdWithTwoBooks; // IMPLEMENT THIS FUNCTION
+
+let authorIdWithTwoBooks = db.any('SELECT author_id FROM books GROUP BY author_id HAVING COUNT(*) = 2')
+
+authorIdWithTwoBooks
+  .then(id => {
+    assert.equal(id[0].author_id, '1809')
+    assert.equal(id[1].author_id, '7805')
+    assert.equal(id.length, 2)
+  })
+  .catch(error => {
+    console.log('There is an error in authorIdWithTwoBooks!!!', error)
+  })
 
 /* --------End of Exercise 5---------------- */
-
-
-
-
 
 /* -----------------------------------------
    Exercise 6
@@ -186,12 +194,19 @@ let authorIdWithTwoBooks; // IMPLEMENT THIS FUNCTION
       {title: 'The Tell-Tale Heart'}]
 
 */
-let bookTitlesWithMultipleEditions; // IMPLEMENT THIS FUNCTION
+
+let bookTitlesWithMultipleEditions = db.any('SELECT title, COUNT(*) FROM books JOIN editions ON editions.book_id = books.id GROUP BY books.id HAVING COUNT(*) >= 2')
+
+bookTitlesWithMultipleEditions
+  .then(multipleEditions => {
+    assert.equal(multipleEditions.length, 5)
+    assert.equal(multipleEditions[0].title, 'The Shining')
+  })
+  .catch(error => {
+    console.log('There is an error in bookTitlesWithMultipleEditions!!!', error)
+  })
 
 /* --------End of Exercise 6---------------- */
-
-
-
 
 /* -----------------------------------------
    Exercise 7
@@ -213,12 +228,31 @@ let bookTitlesWithMultipleEditions; // IMPLEMENT THIS FUNCTION
      {title: 'The Cat in the Hat', first_name: 'Theodor Seuss', last_name: 'Geisel'}]
 
 */
-let findStockedBooks; // IMPLEMENT THIS FUNCTION
+
+let findStockedBooks = db.any('SELECT DISTINCT \
+    title, \
+    authors.first_name, \
+    authors.last_name \
+  FROM books \
+  JOIN authors \
+    ON books.author_id = authors.id \
+  JOIN editions \
+    ON editions.book_id = books.id \
+  JOIN daily_inventory \
+    ON daily_inventory.isbn = editions.isbn \
+  WHERE is_stocked = TRUE')
+
+findStockedBooks
+  .then(stockedBooks => {
+    assert.equal(stockedBooks.length, 2)
+    assert.equal(stockedBooks[0].title, 'Dune')
+    assert.equal(stockedBooks[0].first_name, 'Frank')
+    assert.equal(stockedBooks[0].last_name, 'Herbert')
+  }).catch(error => {
+    console.log('There is an error in findStockedBooks!!!', error)
+  })
 
 /* --------End of Exercise 7---------------- */
 
-
-
-
-console.log('Reached the end!');
-pg.end();
+console.log('Reached the end!')
+pg.end()
