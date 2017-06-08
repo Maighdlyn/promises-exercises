@@ -27,11 +27,14 @@ const db = pg(postgresConfig)
 const allBooks = db.any('SELECT * FROM books')
 /* This is calling the `then` function on the `allBooks` promise, and checks if
    we get back 15 rows. This assertion will fail. Make it PASS! */
-allBooks.then(books => {
-  assert.deepEqual(books.length, 15)
-}).catch(error => {
-  console.log('Dang, my assertion failed.', error)
-})
+
+allBooks
+  .then(books => {
+    assert.equal(books.length, 15)
+  })
+  .catch(error => {
+    console.log('Dang, my assertion failed.', error)
+  })
 
 /* --------End of Exercise 1---------------- */
 
@@ -48,11 +51,14 @@ allBooks.then(books => {
 */
 
 let firstTenBooks = db.any('SELECT * FROM books LIMIT 10')
-firstTenBooks.then(books => {
-  assert(books.length, 10)
-}).catch(error => {
-  console.log('Whoops, my function doesnt behave as expected.', error)
-})
+
+firstTenBooks
+  .then(books => {
+    assert(books.length, 10)
+  })
+  .catch(error => {
+    console.log('Whoops, my function doesnt behave as expected.', error)
+  })
 
 /* --------End of Exercise 2---------------- */
 
@@ -71,13 +77,16 @@ firstTenBooks.then(books => {
 */
 
 let findAuthorsOrderedByLastName = db.any('SELECT * FROM authors ORDER BY last_name')
-findAuthorsOrderedByLastName.then(authors => {
-  assert.deepEqual(authors.length, 19)
-  assert.deepEqual(authors[0].last_name, 'Alcott')
-  assert.deepEqual(authors[18].last_name, 'Worsley')
-}).catch(error => {
-  console.log('Whoops, my function doesnt behave as expected.', error)
-})
+
+findAuthorsOrderedByLastName
+  .then(authors => {
+    assert.equal(authors.length, 19)
+    assert.equal(authors[0].last_name, 'Alcott')
+    assert.equal(authors[18].last_name, 'Worsley')
+  })
+  .catch(error => {
+    console.log('Whoops, my function doesnt behave as expected.', error)
+  })
 
 /* --------End of Exercise 3---------------- */
 
@@ -113,16 +122,19 @@ findAuthorsOrderedByLastName.then(authors => {
    {first_name: 'Theodor Seuss', last_name: 'Geisel', title: 'Bartholomew and the Oobleck'}
    {first_name: 'Theodor Seuss', last_name: 'Geisel', title: 'The Cat in the Hat'}]
 */
+
 let findBookAuthors = db.any('SELECT first_name, last_name, title FROM authors JOIN books ON authors.id = books.author_id')
 
-findBookAuthors.then(books => {
-  assert.deepEqual(books[0].first_name, 'John')
-  assert.deepEqual(books[0].last_name, 'Worsley')
-  assert.deepEqual(books[0].title, 'Practical PostgreSQL')
-  assert.deepEqual(books[books.length - 1].title, 'The Cat in the Hat')
-}).catch(error => {
-  console.log('There is an error in findBookAuthors!!!', error)
-})
+findBookAuthors
+  .then(books => {
+    assert.equal(books[0].first_name, 'John')
+    assert.equal(books[0].last_name, 'Worsley')
+    assert.equal(books[0].title, 'Practical PostgreSQL')
+    assert.equal(books[books.length - 1].title, 'The Cat in the Hat')
+  })
+  .catch(error => {
+    console.log('There is an error in findBookAuthors!!!', error)
+  })
 
 /* --------End of Exercise 4---------------- */
 
@@ -147,15 +159,16 @@ findBookAuthors.then(books => {
 */
 
 let authorIdWithTwoBooks = db.any('SELECT author_id FROM books GROUP BY author_id HAVING COUNT(*) = 2')
-authorIdWithTwoBooks.then(id => {
-  assert.deepEqual(id[0].author_id, '1809')
-  assert.deepEqual(id[1].author_id, '7805')
-  assert.deepEqual(id.length, 2)
-  // console.log(authorIdWithTwoBooks)
-}).catch(error => {
-  console.log('There is an error in authorIdWithTwoBooks!!!', error)
-})
-// Why does this return "[ anonymous { author_id: 1809 }, anonymous { author_id: 7805 } ] }"? What is the 'anonymous'? (uncomment line 152 to see it in the console.log)
+
+authorIdWithTwoBooks
+  .then(id => {
+    assert.equal(id[0].author_id, '1809')
+    assert.equal(id[1].author_id, '7805')
+    assert.equal(id.length, 2)
+  })
+  .catch(error => {
+    console.log('There is an error in authorIdWithTwoBooks!!!', error)
+  })
 
 /* --------End of Exercise 5---------------- */
 
@@ -181,15 +194,17 @@ authorIdWithTwoBooks.then(id => {
       {title: 'The Tell-Tale Heart'}]
 
 */
+
 let bookTitlesWithMultipleEditions = db.any('SELECT title, COUNT(*) FROM books JOIN editions ON editions.book_id = books.id GROUP BY books.id HAVING COUNT(*) >= 2')
 
-bookTitlesWithMultipleEditions.then(multipleEditions => {
-  assert.deepEqual(multipleEditions.length, 5)
-  assert.deepEqual(multipleEditions[0].title, 'The Shining')
-  // console.log(bookTitlesWithMultipleEditions)
-}).catch(error => {
-  console.log('There is an error in bookTitlesWithMultipleEditions!!!', error)
-})
+bookTitlesWithMultipleEditions
+  .then(multipleEditions => {
+    assert.equal(multipleEditions.length, 5)
+    assert.equal(multipleEditions[0].title, 'The Shining')
+  })
+  .catch(error => {
+    console.log('There is an error in bookTitlesWithMultipleEditions!!!', error)
+  })
 
 /* --------End of Exercise 6---------------- */
 
@@ -214,16 +229,28 @@ bookTitlesWithMultipleEditions.then(multipleEditions => {
 
 */
 
-let findStockedBooks = db.any('SELECT DISTINCT title, authors.first_name, authors.last_name FROM books JOIN authors ON books.author_id = authors.id JOIN editions ON editions.book_id = books.id JOIN daily_inventory ON daily_inventory.isbn = editions.isbn WHERE is_stocked = TRUE')
-// What's the best way to format findStockedBooks?
+let findStockedBooks = db.any('SELECT DISTINCT \
+    title, \
+    authors.first_name, \
+    authors.last_name \
+  FROM books \
+  JOIN authors \
+    ON books.author_id = authors.id \
+  JOIN editions \
+    ON editions.book_id = books.id \
+  JOIN daily_inventory \
+    ON daily_inventory.isbn = editions.isbn \
+  WHERE is_stocked = TRUE')
 
-findStockedBooks.then(stockedBooks => {
-  assert.deepEqual(stockedBooks.length, 2)
-  assert.deepEqual(stockedBooks[0].first_name, 'Frank')
-  assert.deepEqual(stockedBooks[0].last_name, 'Herbert')
-}).catch(error => {
-  console.log('There is an error in findStockedBooks!!!', error)
-})
+findStockedBooks
+  .then(stockedBooks => {
+    assert.equal(stockedBooks.length, 2)
+    assert.equal(stockedBooks[0].title, 'Dune')
+    assert.equal(stockedBooks[0].first_name, 'Frank')
+    assert.equal(stockedBooks[0].last_name, 'Herbert')
+  }).catch(error => {
+    console.log('There is an error in findStockedBooks!!!', error)
+  })
 
 /* --------End of Exercise 7---------------- */
 
