@@ -20,9 +20,9 @@ Read [this](https://coligo.io/javascript-promises-plain-simple/) blog post and [
 
 Make sure to save the exercises from the Frontend Masters course:
 
-- [ ] Callback exercise 1 is completed and saved to a file in your repo.
-- [ ] Thunks exercise 2 is completed and saved to a file in your repo.
-- [ ] Promises exercises 3-6 are completed and saved to a file in your repo.
+- [X] Callback exercise 1 is completed and saved to a file in your repo.
+- [X] Thunks exercise 2 is completed and saved to a file in your repo.
+- [X] Promises exercises 3-6 are completed and saved to a file in your repo.
 
 If you complete the above with time to spare, fill any gaps in your understanding by skimming through the [Promises Course][promises-course] on Udacity.
 
@@ -61,11 +61,11 @@ Complete exercises 1-7 in the [pg promise exercises][pg-promise-exercises].
 - [X] Exercise 7 is complete.
 
 ### General
-- [] All package dependencies are properly declared in `package.json`.
-- [] All major features are added via pull requests with a clear description and concise commit messages.
-- [] Code uses a linter and there are no linting errors.
-- [ ] Variables, functions, files, etc. have appropriate and meaningful names.
-- [ ] Functions are small and serve a single purpose.
+- [X] All package dependencies are properly declared in `package.json`.
+- [X] All major features are added via pull requests with a clear description and concise commit messages.
+- [X] Code uses a linter and there are no linting errors.
+- [X] Variables, functions, files, etc. have appropriate and meaningful names.
+- [X] Functions are small and serve a single purpose.
 
 ### Stretch
 - [ ] Read Google's [Introduction](https://developers.google.com/web/fundamentals/getting-started/primers/promises) to Promises
